@@ -1,7 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.1.2" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.8.0" />
+    <PackageReference Include="NUnit.Runners" Version="3.8.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Automation.Common\Automation.Common.csproj">
+      <Project>{3833EE26-C4DF-4988-8F99-B873BA326262}</Project>
+      <Name>Automation.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
