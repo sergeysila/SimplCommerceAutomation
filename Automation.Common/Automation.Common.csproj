@@ -3,7 +3,13 @@
     <TargetFramework>net46</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Ipreo.AutomationFramework" Version="1.0.0.1665" />
+    <PackageReference Include="Ipreo.AutomationFramework.UI" Version="1.0.0.1665" />
+    <PackageReference Include="Ipreo.AutomationFramework.UI.Components" Version="1.0.0.1665" />
+    <PackageReference Include="Ipreo.AutomationFramework.UI.Drivers.ChromeDriver" Version="1.0.0.1665" />
+    <PackageReference Include="morelinq" Version="2.10.0" />
     <PackageReference Include="Polly" Version="5.8.0" />
+    <PackageReference Include="Selenium.Chrome.WebDriver" Version="2.35.0" />
     <PackageReference Include="Selenium.Support" Version="3.10.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.10.0" />
   </ItemGroup>

@@ -4,22 +4,22 @@ namespace Automation.Common.DataModels
 {
     public class Email
     {
-        private readonly string _value;
+        public string Value { get; }
 
         public Email(string value)
         {
             if (IsValid(value))
             {
-                _value = value;
+                Value = value;
             }
-            _value = "";
+            Value = "";
         }
 
         public bool IsValid(string email)
         {
             try
             {
-                return new MailAddress(_value).Address.Equals(email);
+                return new MailAddress(Value).Address.Equals(email);
             }
             catch
             {

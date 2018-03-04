@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Automation.Tests.Helpers
+namespace Automation.Common.Helpers.Extensions
 {
-    public static class Extensions
+    public static class EnumerableExtensions
     {
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
@@ -18,15 +18,5 @@ namespace Automation.Tests.Helpers
         {
             return enumerable.Concat(items);
         }
-
-        public static string RemoveControlCharacters(this string inText)
-            => inText
-                .Replace("\0", "")
-                .Replace("\a", "")
-                .Replace("\b", "")
-                .Replace("\t", "")
-                .Replace("\f", "")
-                .Replace("\n", "")
-                .Replace("\r", "");
     }
 }

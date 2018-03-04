@@ -1,9 +1,9 @@
-﻿using Automation.Common.Pages;
-using Epam.JDI.Core.Settings;
-using JDI_Web.Selenium.DriverFactory;
-using JDI_Web.Selenium.Elements.Composite;
-using JDI_Web.Settings;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Automation.Common.Helpers;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace Automation.Tests.Tests
 {
@@ -13,53 +13,46 @@ namespace Automation.Tests.Tests
         [OneTimeSetUp]
         public void OneTimeSetup()
         {
-            WebSettings.InitNUnitDefault();
-            var logger = JDISettings.Logger;
-            logger.Info("Init test run...");
-            WinProcUtils.KillAllRunWebDrivers();
-            
-            WebSite.Init(typeof(SimpleCommerceSite));
-            SimpleCommerceSite.HomePage.Open();
-            logger.Info("Run test...");
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            WinProcUtils.KillAllRunWebDrivers();
         }
 
         [SetUp]
         public void SetUp()
         {
+            Driver.GoToUrl(ConfigurationHelper.ServiceUrl);
+            Driver.Maximize();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            Driver.Reset();
+        }
 
-//        [TearDown]
-//        public void TearDown()
-//        {
-//            Driver.Reset();
-//        }
+        [TearDown]
+        public static void TakeScreens()
+        {
+            if (!TestExecutionContext.CurrentContext.StopOnError) return;
+            if (!Driver.IsCreated()) return;
 
-//        [TearDown]
-//        public static void TakeScreens()
-//        {
-//            if (!TestExecutionContext.CurrentContext.StopOnError) return;
-//            if (!Driver.IsCreated()) return;
-//
-//            var ignoredBrowserErrors = new List<string>
-//            {
-//                "404 (Not Found)",
-//                "Cannot read property 'Announced' of undefined",
-//                "Cannot read property 'Live' of undefined",
-//                "Template parse warnings"
-//            };
-//            Driver.TakeScreenshot(TestExecutionContext.CurrentContext.CurrentTest.Name + "_" +
-//                                  DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
-//            foreach (var log in Driver.GetLogsBrowser()
-//                .Where(entry => !ignoredBrowserErrors.Any(error => entry.Message.Contains(error)))
-//                .ToList())
-//                Console.WriteLine(log.ToString());
-//        }
+            var ignoredBrowserErrors = new List<string>
+            {
+                "404 (Not Found)",
+                "Cannot read property 'Announced' of undefined",
+                "Cannot read property 'Live' of undefined",
+                "Template parse warnings"
+            };
+            Driver.TakeScreenshot(TestExecutionContext.CurrentContext.CurrentTest.Name + "_" +
+                                  DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
+            foreach (var log in Driver.GetLogsBrowser()
+                .Where(entry => !ignoredBrowserErrors.Any(error => entry.Message.Contains(error)))
+                .ToList())
+                Console.WriteLine(log.ToString());
+        }
     }
 }
