@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-    <appSettings>
-        <add key="browser" value="Chrome" />
-    </appSettings>
-    <AutomationFramework.UI.Configuration.TimeoutSettings ElementTimeout="00:00:05" PageTimeout="00:00:10" />
-    <AutomationFramework.UI.Configuration.RetrySetValueSettings EnableRetry="false" RetriesCount="1" />
-</configuration>

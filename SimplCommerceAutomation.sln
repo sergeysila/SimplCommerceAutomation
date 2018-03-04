@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Common", "Automation.Common\Automation.Common.csproj", "{3833EE26-C4DF-4988-8F99-B873BA326262}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation.Common", "Automation.Common\Automation.Common.csproj", "{3833EE26-C4DF-4988-8F99-B873BA326262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Tests", "Automation.Tests\Automation.Tests.csproj", "{02CC80A0-59E6-4E6A-BEA3-220EFA7D99A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation.Tests", "Automation.Tests\Automation.Tests.csproj", "{02CC80A0-59E6-4E6A-BEA3-220EFA7D99A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

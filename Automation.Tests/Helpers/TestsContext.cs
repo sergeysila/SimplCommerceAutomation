@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace Automation.Tests.Helpers
 {
@@ -10,22 +9,15 @@ namespace Automation.Tests.Helpers
 
         public static void Add<T>(string key, T value, bool replace = false)
         {
-            if (!CurrentContext.Keys.Contains(key) || replace)
-                CurrentContext[key] = value;
+            if (!CurrentContext.Test.Properties.ContainsKey(key) || replace)
+                CurrentContext.Test.Properties.Add(key, value);
         }
 
         public static T TryGet<T>(string key) where T : class
         {
-            if(CurrentContext.ContainsKey(key))
-                return CurrentContext.Get<T>(key);
-
+            if (CurrentContext.Test.Properties.ContainsKey(key))
+                return (T) CurrentContext.Test.Properties.Get(key);
             return null;
-        }
-
-        public static InternalOrderAggregationDto InternalOrderAggregations
-        {
-            get => CurrentContext.Get<InternalOrderAggregationDto>(Constants.InternalOrderAggregation);
-            set => CurrentContext[Constants.InternalOrderAggregation] = value;
         }
     }
 }
