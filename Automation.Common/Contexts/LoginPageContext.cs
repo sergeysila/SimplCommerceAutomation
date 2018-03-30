@@ -2,7 +2,6 @@
 using Automation.Common.DataModels.Users;
 using Automation.Common.Helpers.Extensions;
 using Automation.Common.Pages.LoginPg;
-using Ipreo.AutomationFramework.UI.Services;
 using Wait = Automation.Common.Helpers.Wait;
 
 namespace Automation.Common.Contexts
@@ -13,7 +12,7 @@ namespace Automation.Common.Contexts
         
         public LoginPageContext()
         {
-            _loginPage = PageService.Create<LoginPage>();
+            _loginPage = new LoginPage();
         }
 
         protected override string GetPageUrl() 

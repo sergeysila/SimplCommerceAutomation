@@ -1,98 +1,135 @@
-﻿using System.Drawing;
-using Ipreo.AutomationFramework.UI.Components;
-using Ipreo.AutomationFramework.UI.Components.Search;
+﻿using System.ComponentModel;
+using System.Drawing;
+using Automation.Common.Helpers;
+using HtmlElements.Elements;
+using OpenQA.Selenium;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.Common.Pages
 {
-    public class BasePage : Page
+    public class BasePage : HtmlPage
     {
-        [FindBy(How.CssSelector, "top-bar")] public TopBar TopBar;
+        protected static IWebDriver Driver => DriverFactory.GetDriverInstance().Driver;
 
-        [FindBy(How.CssSelector, "main-header")]
+//        private static T GetPage<T>() where T : new()
+//        {
+//            var page = new T();
+//            PageFactory.InitElements(Driver, page);
+//            return page;
+//        }
+
+        [FindsBy(How = How.CssSelector, Using = "top-bar"), CacheLookup]
+        public TopBar TopBar;
+
+        [FindsBy(How = How.CssSelector, Using = "main-header")]
         public Header Header;
-        
-        [FindBy(How.CssSelector, "main-menu")]
+
+        [FindsBy(How = How.CssSelector, Using = "main-menu")]
         public MainMenu MainMenu;
-        
-        [FindBy(How.CssSelector, ".footer-content")]
+
+        [FindsBy(How = How.CssSelector, Using = ".footer-content")]
         public Footer Footer;
+
+        protected BasePage() : base(Driver)
+        {
+        }
     }
-    
-    public class Header : Container
+
+    public class Header : HtmlElement
     {
-        [FindBy(How.Xpath, "//img[@src,\"modules/core/Logo_SimplCommerce.png\"]")]
+        [FindsBy(How = How.XPath, Using = "//img[@src,\"modules/core/Logo_SimplCommerce.png\"]")]
         public Image Image;
 
-        [FindBy(How.CssSelector, ".form-inline")]
+        [FindsBy(How = How.CssSelector, Using = ".form-inline")]
         public MainSearch Search;
 
-        [FindBy(How.CssSelector, ".cart-badge a")]
-        public HtmlButton CartBadge;
+        [FindsBy(How = How.CssSelector, Using = ".cart-badge a")]
+        public HtmlLabel CartBadge;
+
+        public Header(IWebElement webElement) : base(webElement)
+        {
+        }
     }
 
-    public class MainMenu : Container
+    public class MainMenu : HtmlElement
     {
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Phones']")]
-        HtmlDropDown Phones;
-        
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Tablets']")]
-        HtmlDropDown Tablets;
-        
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Computers']")]
-        HtmlDropDown Computers;
-        
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Accessories']")]
-        HtmlDropDown Accessories;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav navbar-nav main-menu']//a[text()='Phones']")]
+        HtmlSelect Phones;
+
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav navbar-nav main-menu']//a[text()='Tablets']")]
+        HtmlSelect Tablets;
+
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav navbar-nav main-menu']//a[text()='Computers']")]
+        HtmlSelect Computers;
+
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav navbar-nav main-menu']//a[text()='Accessories']")]
+        HtmlSelect Accessories;
+
+        public MainMenu(IWebElement webElement) : base(webElement)
+        {
+        }
     }
-    
-    public class Footer : Container
+
+    public class Footer : HtmlElement
     {
-        [FindBy(How.PartialLinkText, "help-center")]
+        [FindsBy(How = How.PartialLinkText, Using = "help-center")]
         public HtmlLink HelpCenter;
 
-        [FindBy(How.PartialLinkText, "help-center/how-to-buy")]
+        [FindsBy(How = How.PartialLinkText, Using = "help-center/how-to-buy")]
         public HtmlLink HowToBuy;
 
-        [FindBy(How.PartialLinkText, "help-center/shipping")]
+        [FindsBy(How = How.PartialLinkText, Using = "help-center/shipping")]
         public HtmlLink Shipping;
 
-        [FindBy(How.PartialLinkText, "help-center/how-to-return")]
+        [FindsBy(How = How.PartialLinkText, Using = "help-center/how-to-return")]
         public HtmlLink HowToReturn;
 
-        [FindBy(How.PartialLinkText, "help-center/warranty")]
+        [FindsBy(How = How.PartialLinkText, Using = "help-center/warranty")]
         public HtmlLink Warranty;
 
-        [FindBy(How.PartialLinkText, "about-us")]
+        [FindsBy(How = How.PartialLinkText, Using = "about-us")]
         public HtmlLink AboutUs;
 
-        [FindBy(How.PartialLinkText, "terms-of-use")]
+        [FindsBy(How = How.PartialLinkText, Using = "terms-of-use")]
         public HtmlLink TermsOfUse;
 
-        [FindBy(How.PartialLinkText, "privacy")]
+        [FindsBy(How = How.PartialLinkText, Using = "privacy")]
         public HtmlLink Privacy;
+
+        public Footer(IWebElement webElement) : base(webElement)
+        {
+        }
     }
 
-
-    public class MainSearch : Container
+    public class MainSearch : HtmlElement
     {
-        [FindBy(How.CssSelector, ".search-input input")]
-        public HtmlTextField SearchInput;
+        [FindsBy(How = How.CssSelector, Using = ".search-input input")]
+        public HtmlInput SearchInput;
 
-        [FindBy(How.Id, "Category")] 
-        public HtmlDropDown SearchCategorySelector;
+        [FindsBy(How = How.Id, Using = "Category")]
+        public HtmlSelect SearchCategorySelector;
 
-        [FindBy(How.CssSelector, ".search-btn")]
-        public HtmlButton SearchButon;
+        [FindsBy(How = How.CssSelector, Using = ".search-btn")]
+        public HtmlLabel SearchButon;
+
+        public MainSearch(IWebElement webElement) : base(webElement)
+        {
+        }
     }
 
-    public class TopBar : Container
+    public class TopBar : HtmlElement
     {
-        [FindBy(How.CssSelector, ".lang-selector")]
-        public HtmlDropDown LangSelectors;
+        [FindsBy(How = How.CssSelector, Using = ".lang-selector")]
+        public HtmlSelect LangSelectors;
 
-        [FindBy(How.PartialLinkText, "login")] public HtmlLink Login;
+        [FindsBy(How = How.PartialLinkText, Using = "login")]
+        public HtmlLink Login;
 
-        [FindBy(How.PartialLinkText, "register")]
+        [FindsBy(How = How.PartialLinkText, Using = "register")]
         public HtmlLink Register;
+
+        public TopBar(IWebElement webElement) : base(webElement)
+        {
+        }
     }
 }

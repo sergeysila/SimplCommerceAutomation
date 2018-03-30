@@ -24,7 +24,7 @@ namespace Automation.Tests.Tests
         [SetUp]
         public void SetUp()
         {
-            Driver.GoToUrl(ConfigurationHelper.ServiceUrl);
+            Driver.GoToUrl(ConfigurationHelper.MainUrl);
             Driver.Maximize();
         }
 

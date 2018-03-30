@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
-using Ipreo.AutomationFramework.UI.Components.Search;
+using OpenQA.Selenium;
+using SeleniumExtras.PageObjects;
 
 namespace Automation.Common.Pages.HomePg
 {
     public class HomePage : BasePage
     {
-        [FindBy(How.CssSelector, "logo img")] 
+        [FindsBy(How=How.CssSelector, Using = "logo img")] 
         public Image LogoImage;
     }
 }

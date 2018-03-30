@@ -8,7 +8,7 @@ namespace Automation.Tests.Tests.Login
     [TestFixture]
     public class LoginTests : BaseTest
     {
-        LoginPageContext loginContext = new LoginPageContext();
+        private readonly LoginPageContext _loginPageContext = new LoginPageContext();
 
         [Test]
         public void Logintest()
@@ -17,7 +17,7 @@ namespace Automation.Tests.Tests.Login
                 .WithEmail(new Email("char.slava@gmail.com"))
                 .Build();
             
-           loginContext.LoginAs(user);
+           _loginPageContext.LoginAs(user);
         }
     }
 }

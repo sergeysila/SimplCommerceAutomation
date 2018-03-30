@@ -1,4 +1,8 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.Linq;
+using Automation.Common.Helpers.Extensions;
+using MoreLinq;
 
 namespace Automation.Common.Helpers
 {
@@ -12,7 +16,9 @@ namespace Automation.Common.Helpers
             return setting;
         }
         
-        public static string ServiceUrl => GetSettings("uiServiceUrl");
+        public static string MainUrl => GetSettings("homeUrl");
         public static Browser Browser => Browsers.GetBrowser(GetSettings("browser"));
+        public static TimeSpan ElementTimeOut =>
+            TimeSpan.FromSeconds(GetSettings("elementTimeout").Split(':').Last().ToInt());
     }
 }

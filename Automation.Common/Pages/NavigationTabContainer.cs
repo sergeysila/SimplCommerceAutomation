@@ -6,19 +6,19 @@ namespace Automation.Common.Pages
 {
     public class NavigationTabContainer : Container
     {
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Phones']")]
+        [FindsBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Phones']")]
         [Titles("PhonesTab")]
         HtmlLabel Phones;
         
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Tablets']")]
+        [FindsBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Tablets']")]
         [Titles("Tablets")]
         HtmlLabel Tablets;
         
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Computers']")]
+        [FindsBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Computers']")]
         [Titles("Computers")]
         HtmlLabel Computers;
         
-        [FindBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Accessories']")]
+        [FindsBy(How.Xpath, "//ul[@class='nav navbar-nav main-menu']//a[text()='Accessories']")]
         [Titles("Accessories")]
         HtmlLabel Accessories;
 
